@@ -77,6 +77,17 @@ This repository contains the following examples:
 
 - [x] [List Signers](examples/signers/list_signers.rs) - Lists all signers in clusters
 
+##### Permissions
+
+- [x] [Archive Permission](examples/permissions/archive_permission.rs) - Archives a permission
+- [x] [Create Assignment](examples/permissions/create_assignment.rs) - Creates a permission assignment
+- [x] [Create Permission](examples/permissions/create_permission.rs) - Creates a new permission
+- [x] [Delete Assignment](examples/permissions/delete_assignment.rs) - Deletes a permission assignment
+- [x] [Get Permission](examples/permissions/get_permission.rs) - Gets permission details
+- [x] [List Assignments](examples/permissions/list_assignments.rs) - Lists all assignments
+- [x] [List Permissions](examples/permissions/list_permissions.rs) - Lists all permissions
+- [x] [Update Permission](examples/permissions/update_permission.rs) - Updates permission configuration
+
 ##### Policies
 
 - [x] [Archive Policy](examples/policies/archive_policy.rs) - Archives a policy
