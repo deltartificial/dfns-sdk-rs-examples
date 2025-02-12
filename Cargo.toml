@@ -7,6 +7,86 @@ edition = "2024"
 name = "list_wallets"
 path = "examples/wallets/list_wallets.rs"
 
+[[example]]
+name = "create_wallet"
+path = "examples/wallets/create_wallet.rs"
+
+[[example]]
+name = "get_wallet"
+path = "examples/wallets/get_wallet.rs"
+
+[[example]]
+name = "update_wallet"
+path = "examples/wallets/update_wallet.rs"
+
+[[example]]
+name = "tag_wallet"
+path = "examples/wallets/tag_wallet.rs"
+
+[[example]]
+name = "untag_wallet"
+path = "examples/wallets/untag_wallet.rs"
+
+[[example]]
+name = "get_wallet_assets"
+path = "examples/wallets/get_wallet_assets.rs"
+
+[[example]]
+name = "get_wallet_history"
+path = "examples/wallets/get_wallet_history.rs"
+
+[[example]]
+name = "get_wallet_nfts"
+path = "examples/wallets/get_wallet_nfts.rs"
+
+[[example]]
+name = "transfer_asset"
+path = "examples/wallets/transfer_asset.rs"
+
+[[example]]
+name = "broadcast_transaction"
+path = "examples/wallets/broadcast_transaction.rs"
+
+[[example]]
+name = "generate_signature"
+path = "examples/wallets/generate_signature.rs"
+
+[[example]]
+name = "get_signature"
+path = "examples/wallets/get_signature.rs"
+
+[[example]]
+name = "list_signatures"
+path = "examples/wallets/list_signatures.rs"
+
+[[example]]
+name = "get_transaction"
+path = "examples/wallets/get_transaction.rs"
+
+[[example]]
+name = "list_transactions"
+path = "examples/wallets/list_transactions.rs"
+
+[[example]]
+name = "get_transfer"
+path = "examples/wallets/get_transfer.rs"
+
+[[example]]
+name = "list_transfers"
+path = "examples/wallets/list_transfers.rs"
+
+[[example]]
+name = "export_wallet"
+path = "examples/wallets/export_wallet.rs"
+
+[[example]]
+name = "import_wallet"
+path = "examples/wallets/import_wallet.rs"
+
+[[example]]
+name = "delegate_wallet"
+path = "examples/wallets/delegate_wallet.rs"
+
 [dependencies]
 dfns-sdk-rs = { version = "0.1.0" }
 tokio = { version = "1.43", features = ["full"] }
