@@ -3,6 +3,10 @@ name = "dfns-sdk-rs-examples"
 version = "0.1.0"
 edition = "2024"
 
+[[example]]
+name = "list_wallets"
+path = "examples/wallets/list_wallets.rs"
+
 [dependencies]
 dfns-sdk-rs = { version = "0.1.0" }
 tokio = { version = "1.43", features = ["full"] }
