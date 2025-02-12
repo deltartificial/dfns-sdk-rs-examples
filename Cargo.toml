@@ -139,6 +139,10 @@ path = "examples/staking/list_stake_actions.rs"
 name = "list_stakes"
 path = "examples/staking/list_stakes.rs"
 
+[[example]]
+name = "list_signers"
+path = "examples/signers/list_signers.rs"
+
 [dependencies]
 dfns-sdk-rs = { version = "0.1.0" }
 tokio = { version = "1.43", features = ["full"] }

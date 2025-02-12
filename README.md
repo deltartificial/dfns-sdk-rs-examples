@@ -72,3 +72,7 @@ This repository contains the following examples:
 - [x] [Get Stake Rewards](examples/staking/get_stake_rewards.rs) - Gets stake rewards
 - [x] [List Stake Actions](examples/staking/list_stake_actions.rs) - Lists stake actions
 - [x] [List Stakes](examples/staking/list_stakes.rs) - Lists all stakes
+
+##### Signers
+
+- [x] [List Signers](examples/signers/list_signers.rs) - Lists all signers in clusters
