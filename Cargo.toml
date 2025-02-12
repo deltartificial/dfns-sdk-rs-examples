@@ -143,6 +143,37 @@ path = "examples/staking/list_stakes.rs"
 name = "list_signers"
 path = "examples/signers/list_signers.rs"
 
+[[example]]
+name = "archive_policy"
+path = "examples/policies/archive_policy.rs"
+
+[[example]]
+name = "create_approval_decision"
+path = "examples/policies/create_approval_decision.rs"
+
+[[example]]
+name = "create_policy"
+
+[[example]]
+name = "get_approval"
+path = "examples/policies/get_approval.rs"
+
+[[example]]
+name = "get_policy"
+path = "examples/policies/get_policy.rs"
+
+[[example]]
+name = "list_approvals"
+path = "examples/policies/list_approvals.rs"
+
+[[example]]
+name = "list_policies"
+path = "examples/policies/list_policies.rs"
+
+[[example]]
+name = "update_policy"
+path = "examples/policies/update_policy.rs"
+
 [dependencies]
 dfns-sdk-rs = { version = "0.1.0" }
 tokio = { version = "1.43", features = ["full"] }

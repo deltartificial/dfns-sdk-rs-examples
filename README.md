@@ -76,3 +76,14 @@ This repository contains the following examples:
 ##### Signers
 
 - [x] [List Signers](examples/signers/list_signers.rs) - Lists all signers in clusters
+
+##### Policies
+
+- [x] [Archive Policy](examples/policies/archive_policy.rs) - Archives a policy
+- [x] [Create Approval Decision](examples/policies/create_approval_decision.rs) - Creates an approval decision
+- [x] [Create Policy](examples/policies/create_policy.rs) - Creates a new policy
+- [x] [Get Approval](examples/policies/get_approval.rs) - Gets approval details
+- [x] [Get Policy](examples/policies/get_policy.rs) - Gets policy details
+- [x] [List Approvals](examples/policies/list_approvals.rs) - Lists all approvals
+- [x] [List Policies](examples/policies/list_policies.rs) - Lists all policies
+- [x] [Update Policy](examples/policies/update_policy.rs) - Updates policy configuration
