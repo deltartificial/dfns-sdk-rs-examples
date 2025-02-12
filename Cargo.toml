@@ -251,6 +251,222 @@ path = "examples/exchanges/list_asset_withdrawal_networks.rs"
 name = "list_exchanges"
 path = "examples/exchanges/list_exchanges.rs"
 
+[[example]]
+name = "create_user_action_signature"
+path = "examples/auth/create_user_action_signature.rs"
+
+[[example]]
+name = "recreate_delegated_registration_challenge"
+path = "examples/auth/recreate_delegated_registration_challenge.rs"
+
+[[example]]
+name = "register_end_user"
+path = "examples/auth/register_end_user.rs"
+
+[[example]]
+name = "update_application"
+path = "examples/auth/update_application.rs"
+
+[[example]]
+name = "activate_application"
+path = "examples/auth/activate_application.rs"
+
+[[example]]
+name = "activate_credential"
+path = "examples/auth/activate_credential.rs"
+
+[[example]]
+name = "activate_personal_access_token"
+path = "examples/auth/activate_personal_access_token.rs"
+
+[[example]]
+name = "activate_service_account"
+path = "examples/auth/activate_service_account.rs"
+
+[[example]]
+name = "activate_user"
+path = "examples/auth/activate_user.rs"
+
+[[example]]
+name = "archive_application"
+path = "examples/auth/archive_application.rs"
+
+[[example]]
+name = "archive_credential"
+path = "examples/auth/archive_credential.rs"
+
+[[example]]
+name = "archive_personal_access_token"
+path = "examples/auth/archive_personal_access_token.rs"
+
+[[example]]
+name = "archive_service_account"
+path = "examples/auth/archive_service_account.rs"
+
+[[example]]
+name = "archive_user"
+path = "examples/auth/archive_user.rs"
+
+[[example]]
+name = "create_credential_challenge"
+path = "examples/auth/create_credential_challenge.rs"
+
+[[example]]
+name = "create_credential_code"
+path = "examples/auth/create_credential_code.rs"
+
+[[example]]
+name = "create_credential_with_code"
+path = "examples/auth/create_credential_with_code.rs"
+
+[[example]]
+name = "create_delegated_recovery_challenge"
+path = "examples/auth/create_delegated_recovery_challenge.rs"
+
+[[example]]
+name = "create_delegated_registration_challenge"
+path = "examples/auth/create_delegated_registration_challenge.rs"
+
+[[example]]
+name = "create_login_challenge"
+path = "examples/auth/create_login_challenge.rs"
+
+[[example]]
+name = "create_personal_access_token"
+path = "examples/auth/create_personal_access_token.rs"
+
+[[example]]
+name = "create_recovery_challenge"
+path = "examples/auth/create_recovery_challenge.rs"
+
+[[example]]
+name = "create_registration_challenge"
+path = "examples/auth/create_registration_challenge.rs"
+
+[[example]]
+name = "create_service_account"
+path = "examples/auth/create_service_account.rs"
+
+[[example]]
+name = "create_service_account_challenge"
+path = "examples/auth/create_service_account_challenge.rs"
+
+[[example]]
+name = "create_user"
+path = "examples/auth/create_user.rs"
+
+[[example]]
+name = "create_user_action_challenge"
+path = "examples/auth/create_user_action_challenge.rs"
+
+[[example]]
+name = "deactivate_application"
+path = "examples/auth/deactivate_application.rs"
+
+[[example]]
+name = "deactivate_credential"
+path = "examples/auth/deactivate_credential.rs"
+
+[[example]]
+name = "deactivate_personal_access_token"
+path = "examples/auth/deactivate_personal_access_token.rs"
+
+[[example]]
+name = "deactivate_service_account"
+path = "examples/auth/deactivate_service_account.rs"
+
+[[example]]
+name = "deactivate_user"
+path = "examples/auth/deactivate_user.rs"
+
+[[example]]
+name = "delegate_credential"
+path = "examples/auth/delegate_credential.rs"
+
+[[example]]
+name = "get_application"
+path = "examples/auth/get_application.rs"
+
+[[example]]
+name = "get_credential"
+path = "examples/auth/get_credential.rs"
+
+[[example]]
+name = "get_personal_access_token"
+path = "examples/auth/get_personal_access_token.rs"
+
+[[example]]
+name = "get_service_account"
+path = "examples/auth/get_service_account.rs"
+
+[[example]]
+name = "get_user"
+path = "examples/auth/get_user.rs"
+
+[[example]]
+name = "initiate_challenge"
+path = "examples/auth/initiate_challenge.rs"
+
+[[example]]
+name = "list_applications"
+path = "examples/auth/list_applications.rs"
+
+[[example]]
+name = "list_credentials"
+path = "examples/auth/list_credentials.rs"
+
+[[example]]
+name = "list_personal_access_tokens"
+path = "examples/auth/list_personal_access_tokens.rs"
+
+[[example]]
+name = "login"
+path = "examples/auth/login.rs"
+
+[[example]]
+name = "recover"
+path = "examples/auth/recover.rs"
+
+[[example]]
+name = "register"
+path = "examples/auth/register.rs"
+
+[[example]]
+name = "register_with_code"
+path = "examples/auth/register_with_code.rs"
+
+[[example]]
+name = "register_with_recovery"
+path = "examples/auth/register_with_recovery.rs"
+
+[[example]]
+name = "update_credential"
+path = "examples/auth/update_credential.rs"
+
+[[example]]
+name = "update_personal_access_token"
+path = "examples/auth/update_personal_access_token.rs"
+
+[[example]]
+name = "update_service_account"
+path = "examples/auth/update_service_account.rs"
+
+[[example]]
+name = "update_user"
+path = "examples/auth/update_user.rs"
+
+[[example]]
+name = "verify_challenge"
+path = "examples/auth/verify_challenge.rs"
+
+[[example]]
+name = "verify_recovery_challenge"
+path = "examples/auth/verify_recovery_challenge.rs"
+
+[[example]]
+name = "verify_registration_challenge"
+path = "examples/auth/verify_registration_challenge.rs"
+
 [dependencies]
 dfns-sdk-rs = { version = "0.1.0" }
 tokio = { version = "1.43", features = ["full"] }
