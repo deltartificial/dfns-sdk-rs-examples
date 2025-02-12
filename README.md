@@ -53,3 +53,14 @@ This repository contains the following examples:
 - [x] [Export Wallet](examples/wallets/export_wallet.rs) - Exports a wallet
 - [x] [Import Wallet](examples/wallets/import_wallet.rs) - Imports a wallet
 - [x] [Delegate Wallet](examples/wallets/delegate_wallet.rs) - Delegates wallet control
+
+##### Webhooks
+
+- [x] [Create Webhook](examples/webhooks/create_webhook.rs) - Creates a new webhook
+- [x] [Get Webhook](examples/webhooks/get_webhook.rs) - Gets webhook details
+- [x] [Update Webhook](examples/webhooks/update_webhook.rs) - Updates webhook configuration
+- [x] [Delete Webhook](examples/webhooks/delete_webhook.rs) - Deletes a webhook
+- [x] [List Webhooks](examples/webhooks/list_webhooks.rs) - Lists all webhooks
+- [x] [Ping Webhook](examples/webhooks/ping_webhook.rs) - Tests webhook connectivity
+- [x] [Get Webhook Event](examples/webhooks/get_webhook_event.rs) - Gets webhook event details
+- [x] [List Webhook Events](examples/webhooks/list_webhook_events.rs) - Lists webhook events

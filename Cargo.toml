@@ -87,6 +87,38 @@ path = "examples/wallets/import_wallet.rs"
 name = "delegate_wallet"
 path = "examples/wallets/delegate_wallet.rs"
 
+[[example]]
+name = "create_webhook"
+path = "examples/webhooks/create_webhook.rs"
+
+[[example]]
+name = "get_webhook"
+path = "examples/webhooks/get_webhook.rs"
+
+[[example]]
+name = "update_webhook"
+path = "examples/webhooks/update_webhook.rs"
+
+[[example]]
+name = "delete_webhook"
+path = "examples/webhooks/delete_webhook.rs"
+
+[[example]]
+name = "list_webhooks"
+path = "examples/webhooks/list_webhooks.rs"
+
+[[example]]
+name = "ping_webhook"
+path = "examples/webhooks/ping_webhook.rs"
+
+[[example]]
+name = "get_webhook_event"
+path = "examples/webhooks/get_webhook_event.rs"
+
+[[example]]
+name = "list_webhook_events"
+path = "examples/webhooks/list_webhook_events.rs"
+
 [dependencies]
 dfns-sdk-rs = { version = "0.1.0" }
 tokio = { version = "1.43", features = ["full"] }
