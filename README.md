@@ -64,3 +64,11 @@ This repository contains the following examples:
 - [x] [Ping Webhook](examples/webhooks/ping_webhook.rs) - Tests webhook connectivity
 - [x] [Get Webhook Event](examples/webhooks/get_webhook_event.rs) - Gets webhook event details
 - [x] [List Webhook Events](examples/webhooks/list_webhook_events.rs) - Lists webhook events
+
+##### Staking
+
+- [x] [Create Stake](examples/staking/create_stake.rs) - Creates a new stake
+- [x] [Create Stake Action](examples/staking/create_stake_action.rs) - Creates a stake action
+- [x] [Get Stake Rewards](examples/staking/get_stake_rewards.rs) - Gets stake rewards
+- [x] [List Stake Actions](examples/staking/list_stake_actions.rs) - Lists stake actions
+- [x] [List Stakes](examples/staking/list_stakes.rs) - Lists all stakes

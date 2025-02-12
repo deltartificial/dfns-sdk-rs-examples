@@ -119,6 +119,26 @@ path = "examples/webhooks/get_webhook_event.rs"
 name = "list_webhook_events"
 path = "examples/webhooks/list_webhook_events.rs"
 
+[[example]]
+name = "create_stake"
+path = "examples/staking/create_stake.rs"
+
+[[example]]
+name = "create_stake_action"
+path = "examples/staking/create_stake_action.rs"
+
+[[example]]
+name = "get_stake_rewards"
+path = "examples/staking/get_stake_rewards.rs"
+
+[[example]]
+name = "list_stake_actions"
+path = "examples/staking/list_stake_actions.rs"
+
+[[example]]
+name = "list_stakes"
+path = "examples/staking/list_stakes.rs"
+
 [dependencies]
 dfns-sdk-rs = { version = "0.1.0" }
 tokio = { version = "1.43", features = ["full"] }

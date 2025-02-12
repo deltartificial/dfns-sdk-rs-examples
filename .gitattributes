@@ -1,1 +1,3 @@
-/examples/* linguist-language=Rust
+/examples/wallets/* linguist-language=Rust
+/examples/webhooks/* linguist-language=Rust
+/examples/staking/* linguist-language=Rust
