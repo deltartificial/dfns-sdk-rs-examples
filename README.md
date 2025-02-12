@@ -88,6 +88,11 @@ This repository contains the following examples:
 - [x] [List Permissions](examples/permissions/list_permissions.rs) - Lists all permissions
 - [x] [Update Permission](examples/permissions/update_permission.rs) - Updates permission configuration
 
+##### Networks
+
+- [x] [Get Fees](examples/networks/get_fees.rs) - Gets network fees for various blockchains
+- [x] [Read Contract](examples/networks/read_contract.rs) - Reads data from a smart contract
+
 ##### Policies
 
 - [x] [Archive Policy](examples/policies/archive_policy.rs) - Archives a policy

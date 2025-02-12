@@ -153,6 +153,7 @@ path = "examples/policies/create_approval_decision.rs"
 
 [[example]]
 name = "create_policy"
+path = "examples/policies/create_policy.rs"
 
 [[example]]
 name = "get_approval"
@@ -173,6 +174,46 @@ path = "examples/policies/list_policies.rs"
 [[example]]
 name = "update_policy"
 path = "examples/policies/update_policy.rs"
+
+[[example]]
+name = "archive_permission"
+path = "examples/permissions/archive_permission.rs"
+
+[[example]]
+name = "create_assignment"
+path = "examples/permissions/create_assignment.rs"
+
+[[example]]
+name = "create_permission"
+path = "examples/permissions/create_permission.rs"
+
+[[example]]
+name = "delete_assignment"
+path = "examples/permissions/delete_assignment.rs"
+
+[[example]]
+name = "get_permission"
+path = "examples/permissions/get_permission.rs"
+
+[[example]]
+name = "list_assignments"
+path = "examples/permissions/list_assignments.rs"
+
+[[example]]
+name = "list_permissions"
+path = "examples/permissions/list_permissions.rs"
+
+[[example]]
+name = "update_permission"
+path = "examples/permissions/update_permission.rs"
+
+[[example]]
+name = "get_fees"
+path = "examples/networks/get_fees.rs"
+
+[[example]]
+name = "read_contract"
+path = "examples/networks/read_contract.rs"
 
 [dependencies]
 dfns-sdk-rs = { version = "0.1.0" }
