@@ -93,6 +93,18 @@ This repository contains the following examples:
 - [x] [Get Fees](examples/networks/get_fees.rs) - Gets network fees for various blockchains
 - [x] [Read Contract](examples/networks/read_contract.rs) - Reads data from a smart contract
 
+##### Exchanges
+
+- [x] [Create Deposit](examples/exchanges/create_deposit.rs) - Creates a new deposit
+- [x] [Create Exchange](examples/exchanges/create_exchange.rs) - Creates a new exchange
+- [x] [Create Withdrawal](examples/exchanges/create_withdrawal.rs) - Creates a new withdrawal
+- [x] [Delete Exchange](examples/exchanges/delete_exchange.rs) - Deletes an exchange
+- [x] [Get Exchange](examples/exchanges/get_exchange.rs) - Gets exchange details
+- [x] [List Account Assets](examples/exchanges/list_account_assets.rs) - Lists assets in an account
+- [x] [List Accounts](examples/exchanges/list_accounts.rs) - Lists all accounts
+- [x] [List Asset Withdrawal Networks](examples/exchanges/list_asset_withdrawal_networks.rs) - Lists withdrawal networks for an asset
+- [x] [List Exchanges](examples/exchanges/list_exchanges.rs) - Lists all exchanges
+
 ##### Policies
 
 - [x] [Archive Policy](examples/policies/archive_policy.rs) - Archives a policy

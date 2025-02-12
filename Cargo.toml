@@ -215,6 +215,42 @@ path = "examples/networks/get_fees.rs"
 name = "read_contract"
 path = "examples/networks/read_contract.rs"
 
+[[example]]
+name = "create_deposit"
+path = "examples/exchanges/create_deposit.rs"
+
+[[example]]
+name = "create_exchange"
+path = "examples/exchanges/create_exchange.rs"
+
+[[example]]
+name = "create_withdrawal"
+path = "examples/exchanges/create_withdrawal.rs"
+
+[[example]]
+name = "delete_exchange"
+path = "examples/exchanges/delete_exchange.rs"
+
+[[example]]
+name = "get_exchange"
+path = "examples/exchanges/get_exchange.rs"
+
+[[example]]
+name = "list_account_assets"
+path = "examples/exchanges/list_account_assets.rs"
+
+[[example]]
+name = "list_accounts"
+path = "examples/exchanges/list_accounts.rs"
+
+[[example]]
+name = "list_asset_withdrawal_networks"
+path = "examples/exchanges/list_asset_withdrawal_networks.rs"
+
+[[example]]
+name = "list_exchanges"
+path = "examples/exchanges/list_exchanges.rs"
+
 [dependencies]
 dfns-sdk-rs = { version = "0.1.0" }
 tokio = { version = "1.43", features = ["full"] }
