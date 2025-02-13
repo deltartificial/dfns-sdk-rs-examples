@@ -1,11 +1,15 @@
+use async_trait::async_trait;
 use dfns_sdk_rs::{
     DfnsApiClient,
+    api::networks::types::{
+        Body, ReadContractBodyKind, ReadContractBodyNetwork, ReadContractRequest,
+    },
     error::DfnsError,
     models::generic::DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::networks::types::{ReadContractRequest, Body, ReadContractBodyKind, ReadContractBodyNetwork},
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
 };
-use async_trait::async_trait;
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -21,7 +25,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -49,7 +56,8 @@ async fn main() {
     let request = ReadContractRequest {
         body: Body {
             contract: "0x1234567890123456789012345678901234567890".to_string(),
-            data: "0x70a08231000000000000000000000000e16c1623c1aa7d919cd2241d8b36d9e79c1be2a2".to_string(),
+            data: "0x70a08231000000000000000000000000e16c1623c1aa7d919cd2241d8b36d9e79c1be2a2"
+                .to_string(),
             kind: ReadContractBodyKind::Evm,
             network: ReadContractBodyNetwork::Ethereum,
         },
@@ -63,4 +71,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error: {:?}", e),
     }
-} 
+}

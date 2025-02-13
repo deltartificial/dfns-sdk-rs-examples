@@ -1,9 +1,11 @@
-use dfns_sdk_rs::{
-    DfnsApiClient, DfnsError, DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::{CreateRecoveryChallengeRequest, CreateRecoveryChallengeRequestBody},
-};
 use async_trait::async_trait;
+use dfns_sdk_rs::{
+    DfnsApiClient, DfnsBaseApiOptions, DfnsError,
+    api::auth::types::{CreateRecoveryChallengeRequest, CreateRecoveryChallengeRequestBody},
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
+};
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -19,7 +21,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -58,8 +63,11 @@ async fn main() {
             println!("Recovery challenge created successfully:");
             println!("  Challenge: {}", response.challenge);
             println!("  Attestation: {:?}", response.attestation);
-            println!("  Temporary Auth Token: {}", response.temporary_authentication_token);
-            
+            println!(
+                "  Temporary Auth Token: {}",
+                response.temporary_authentication_token
+            );
+
             if let Some(rp) = response.rp {
                 println!("\nRelying Party Info:");
                 println!("  ID: {}", rp.id);
@@ -73,9 +81,15 @@ async fn main() {
             }
 
             println!("\nSupported Credential Kinds:");
-            println!("  First Factor: {:?}", response.supported_credential_kinds.first_factor);
-            println!("  Second Factor: {:?}", response.supported_credential_kinds.second_factor);
+            println!(
+                "  First Factor: {:?}",
+                response.supported_credential_kinds.first_factor
+            );
+            println!(
+                "  Second Factor: {:?}",
+                response.supported_credential_kinds.second_factor
+            );
         }
         Err(e) => eprintln!("Error creating recovery challenge: {:?}", e),
     }
-} 
+}

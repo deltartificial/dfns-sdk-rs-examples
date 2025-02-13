@@ -1,11 +1,13 @@
+use async_trait::async_trait;
 use dfns_sdk_rs::{
     DfnsApiClient,
+    api::networks::types::{GetFeesQueryNetwork, GetFeesRequest, Query},
     error::DfnsError,
     models::generic::DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::networks::types::{GetFeesRequest, Query, GetFeesQueryNetwork},
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
 };
-use async_trait::async_trait;
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -21,7 +23,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -58,24 +63,33 @@ async fn main() {
             println!("  Network: {:?}", response.network);
             println!("  Block Number: {}", response.block_number);
             println!("  Kind: {:?}", response.kind);
-            
+
             println!("\nFast Transaction:");
             println!("  Block Horizon: {:?}", response.fast.block_horizon);
             println!("  Fee Rate: {:?}", response.fast.fee_rate);
             println!("  Max Fee Per Gas: {:?}", response.fast.max_fee_per_gas);
-            println!("  Max Priority Fee Per Gas: {:?}", response.fast.max_priority_fee_per_gas);
-            
+            println!(
+                "  Max Priority Fee Per Gas: {:?}",
+                response.fast.max_priority_fee_per_gas
+            );
+
             println!("\nStandard Transaction:");
             println!("  Block Horizon: {:?}", response.standard.block_horizon);
             println!("  Fee Rate: {:?}", response.standard.fee_rate);
             println!("  Max Fee Per Gas: {:?}", response.standard.max_fee_per_gas);
-            println!("  Max Priority Fee Per Gas: {:?}", response.standard.max_priority_fee_per_gas);
-            
+            println!(
+                "  Max Priority Fee Per Gas: {:?}",
+                response.standard.max_priority_fee_per_gas
+            );
+
             println!("\nSlow Transaction:");
             println!("  Block Horizon: {:?}", response.slow.block_horizon);
             println!("  Fee Rate: {:?}", response.slow.fee_rate);
             println!("  Max Fee Per Gas: {:?}", response.slow.max_fee_per_gas);
-            println!("  Max Priority Fee Per Gas: {:?}", response.slow.max_priority_fee_per_gas);
+            println!(
+                "  Max Priority Fee Per Gas: {:?}",
+                response.slow.max_priority_fee_per_gas
+            );
 
             if let Some(base_fee) = response.estimated_base_fee {
                 println!("\nEstimated Base Fee: {}", base_fee);
@@ -83,4 +97,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error: {:?}", e),
     }
-} 
+}

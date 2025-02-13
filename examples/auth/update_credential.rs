@@ -1,9 +1,11 @@
-use dfns_sdk_rs::{
-    DfnsApiClient, DfnsError, DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::{UpdateCredentialRequest, UpdateCredentialRequestBody},
-};
 use async_trait::async_trait;
+use dfns_sdk_rs::{
+    DfnsApiClient, DfnsBaseApiOptions, DfnsError,
+    api::auth::types::{UpdateCredentialRequest, UpdateCredentialRequestBody},
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
+};
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -19,7 +21,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -66,4 +71,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error updating credential: {:?}", e),
     }
-} 
+}

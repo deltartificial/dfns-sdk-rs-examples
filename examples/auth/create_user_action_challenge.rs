@@ -1,9 +1,14 @@
-use dfns_sdk_rs::{
-    DfnsApiClient, DfnsError, DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::{CreateUserActionChallengeRequest, CreateUserActionChallengeRequestBody, UserActionServerKind},
-};
 use async_trait::async_trait;
+use dfns_sdk_rs::{
+    DfnsApiClient, DfnsBaseApiOptions, DfnsError,
+    api::auth::types::{
+        CreateUserActionChallengeRequest, CreateUserActionChallengeRequestBody,
+        UserActionServerKind,
+    },
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
+};
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -19,7 +24,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -59,8 +67,11 @@ async fn main() {
             println!("  Challenge Identifier: {}", response.challenge_identifier);
             println!("  Challenge: {}", response.challenge);
             println!("  User Verification: {:?}", response.user_verification);
-            println!("  External Auth URL: {}", response.external_authentication_url);
-            
+            println!(
+                "  External Auth URL: {}",
+                response.external_authentication_url
+            );
+
             if let Some(rp) = response.rp {
                 println!("\nRelying Party Info:");
                 println!("  ID: {}", rp.id);
@@ -90,4 +101,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error creating user action challenge: {:?}", e),
     }
-} 
+}

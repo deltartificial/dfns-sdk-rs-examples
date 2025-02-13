@@ -1,10 +1,12 @@
+use async_trait::async_trait;
 use dfns_sdk_rs::{
     DfnsApiClient,
     error::DfnsError,
     models::generic::DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
 };
-use async_trait::async_trait;
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -20,7 +22,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -46,9 +51,13 @@ async fn main() {
     let client = DfnsApiClient::new(base_options, Some(signer));
 
     let policy_id = "example-policy-id";
-    match client.policies().archive_policy(dfns_sdk_rs::api::policies::types::ArchivePolicyRequest {
-        policy_id: policy_id.to_string(),
-    }).await {
+    match client
+        .policies()
+        .archive_policy(dfns_sdk_rs::api::policies::types::ArchivePolicyRequest {
+            policy_id: policy_id.to_string(),
+        })
+        .await
+    {
         Ok(response) => {
             println!("Successfully archived policy:");
             println!("  ID: {}", response.id);
@@ -58,4 +67,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error: {:?}", e),
     }
-} 
+}

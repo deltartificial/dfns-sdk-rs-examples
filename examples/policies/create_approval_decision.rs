@@ -1,11 +1,15 @@
+use async_trait::async_trait;
 use dfns_sdk_rs::{
     DfnsApiClient,
+    api::policies::types::{
+        CreateApprovalDecisionRequest, CreateApprovalDecisionRequestBody, Value,
+    },
     error::DfnsError,
     models::generic::DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::policies::types::{CreateApprovalDecisionRequest, CreateApprovalDecisionRequestBody, Value},
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
 };
-use async_trait::async_trait;
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -21,7 +25,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -60,9 +67,12 @@ async fn main() {
             println!("Successfully created approval decision:");
             println!("  ID: {}", response.id);
             println!("  Status: {:?}", response.status);
-            println!("  Date Created: {}", response.date_created.unwrap_or_default());
+            println!(
+                "  Date Created: {}",
+                response.date_created.unwrap_or_default()
+            );
             println!("  Initiator ID: {}", response.initiator_id);
-            
+
             if !response.decisions.is_empty() {
                 println!("Decisions:");
                 for decision in response.decisions {
@@ -74,4 +84,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error: {:?}", e),
     }
-} 
+}

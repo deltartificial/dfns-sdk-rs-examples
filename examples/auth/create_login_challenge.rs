@@ -1,9 +1,11 @@
-use dfns_sdk_rs::{
-    DfnsApiClient, DfnsError, DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::{CreateLoginChallengeRequest, CreateLoginChallengeRequestBody},
-};
 use async_trait::async_trait;
+use dfns_sdk_rs::{
+    DfnsApiClient, DfnsBaseApiOptions, DfnsError,
+    api::auth::types::{CreateLoginChallengeRequest, CreateLoginChallengeRequestBody},
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
+};
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -19,7 +21,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -57,10 +62,13 @@ async fn main() {
             println!("Login challenge created successfully:");
             println!("  Challenge Identifier: {}", response.challenge_identifier);
             println!("  Challenge: {}", response.challenge);
-            println!("  External Auth URL: {}", response.external_authentication_url);
+            println!(
+                "  External Auth URL: {}",
+                response.external_authentication_url
+            );
             println!("  User Verification: {:?}", response.user_verification);
             println!("  Attestation: {:?}", response.attestation);
-            
+
             if let Some(rp) = response.rp {
                 println!("\nRelying Party Info:");
                 println!("  ID: {}", rp.id);
@@ -69,7 +77,7 @@ async fn main() {
 
             println!("\nAllowed Credentials:");
             let allow_creds = response.allow_credentials;
-            
+
             if !allow_creds.key.is_empty() {
                 println!("  Keys:");
                 for key in allow_creds.key {
@@ -103,4 +111,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error creating login challenge: {:?}", e),
     }
-} 
+}

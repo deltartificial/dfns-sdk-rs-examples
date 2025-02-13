@@ -1,11 +1,13 @@
+use async_trait::async_trait;
 use dfns_sdk_rs::{
     DfnsApiClient,
+    api::permissions::types::{ArchivePermissionRequest, ArchivePermissionRequestBody},
     error::DfnsError,
     models::generic::DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::permissions::types::{ArchivePermissionRequest, ArchivePermissionRequestBody},
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
 };
-use async_trait::async_trait;
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -21,7 +23,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -49,9 +54,7 @@ async fn main() {
     let permission_id = "example-permission-id";
     let request = ArchivePermissionRequest {
         permission_id: permission_id.to_string(),
-        body: ArchivePermissionRequestBody {
-            is_archived: true,
-        },
+        body: ArchivePermissionRequestBody { is_archived: true },
     };
 
     match client.permissions().archive_permission(request).await {
@@ -67,4 +70,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error: {:?}", e),
     }
-} 
+}

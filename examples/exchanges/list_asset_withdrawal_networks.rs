@@ -1,9 +1,11 @@
-use dfns_sdk_rs::{
-    DfnsApiClient, DfnsError, DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::exchanges::types::ListAssetWithdrawalNetworksRequest,
-};
 use async_trait::async_trait;
+use dfns_sdk_rs::{
+    DfnsApiClient, DfnsBaseApiOptions, DfnsError,
+    api::exchanges::types::ListAssetWithdrawalNetworksRequest,
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
+};
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -19,7 +21,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -50,7 +55,11 @@ async fn main() {
         asset: "BTC".to_string(),
     };
 
-    match client.exchanges().list_asset_withdrawal_networks(request).await {
+    match client
+        .exchanges()
+        .list_asset_withdrawal_networks(request)
+        .await
+    {
         Ok(response) => {
             println!("Asset withdrawal networks:");
             for network in response {
@@ -64,4 +73,4 @@ async fn main() {
         }
         Err(e) => println!("Error listing asset withdrawal networks: {:?}", e),
     }
-} 
+}

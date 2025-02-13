@@ -292,10 +292,6 @@ name = "archive_application"
 path = "examples/auth/archive_application.rs"
 
 [[example]]
-name = "archive_credential"
-path = "examples/auth/archive_credential.rs"
-
-[[example]]
 name = "archive_personal_access_token"
 path = "examples/auth/archive_personal_access_token.rs"
 
@@ -348,10 +344,6 @@ name = "create_service_account"
 path = "examples/auth/create_service_account.rs"
 
 [[example]]
-name = "create_service_account_challenge"
-path = "examples/auth/create_service_account_challenge.rs"
-
-[[example]]
 name = "create_user"
 path = "examples/auth/create_user.rs"
 
@@ -380,16 +372,8 @@ name = "deactivate_user"
 path = "examples/auth/deactivate_user.rs"
 
 [[example]]
-name = "delegate_credential"
-path = "examples/auth/delegate_credential.rs"
-
-[[example]]
 name = "get_application"
 path = "examples/auth/get_application.rs"
-
-[[example]]
-name = "get_credential"
-path = "examples/auth/get_credential.rs"
 
 [[example]]
 name = "get_personal_access_token"
@@ -402,10 +386,6 @@ path = "examples/auth/get_service_account.rs"
 [[example]]
 name = "get_user"
 path = "examples/auth/get_user.rs"
-
-[[example]]
-name = "initiate_challenge"
-path = "examples/auth/initiate_challenge.rs"
 
 [[example]]
 name = "list_applications"
@@ -432,10 +412,6 @@ name = "register"
 path = "examples/auth/register.rs"
 
 [[example]]
-name = "register_with_code"
-path = "examples/auth/register_with_code.rs"
-
-[[example]]
 name = "register_with_recovery"
 path = "examples/auth/register_with_recovery.rs"
 
@@ -450,10 +426,6 @@ path = "examples/auth/update_personal_access_token.rs"
 [[example]]
 name = "update_service_account"
 path = "examples/auth/update_service_account.rs"
-
-[[example]]
-name = "update_user"
-path = "examples/auth/update_user.rs"
 
 [[example]]
 name = "verify_challenge"

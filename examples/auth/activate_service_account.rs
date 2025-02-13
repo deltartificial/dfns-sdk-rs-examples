@@ -1,9 +1,11 @@
-use dfns_sdk_rs::{
-    DfnsApiClient, DfnsError, DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::ActivateServiceAccountRequest,
-};
 use async_trait::async_trait;
+use dfns_sdk_rs::{
+    DfnsApiClient, DfnsBaseApiOptions, DfnsError,
+    api::auth::types::ActivateServiceAccountRequest,
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
+};
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -19,7 +21,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -51,7 +56,7 @@ async fn main() {
     match client.auth().activate_service_account(request).await {
         Ok(response) => {
             println!("Service account activated successfully:");
-            
+
             println!("\nUser Info:");
             println!("  User ID: {}", response.user_info.user_id);
             println!("  Username: {}", response.user_info.username);
@@ -59,9 +64,12 @@ async fn main() {
             println!("  Kind: {:?}", response.user_info.kind);
             println!("  Is Active: {}", response.user_info.is_active);
             println!("  Is Registered: {}", response.user_info.is_registered);
-            println!("  Is Service Account: {}", response.user_info.is_service_account);
+            println!(
+                "  Is Service Account: {}",
+                response.user_info.is_service_account
+            );
             println!("  Organization ID: {}", response.user_info.org_id);
-            
+
             if !response.access_tokens.is_empty() {
                 println!("\nAccess Tokens:");
                 for token in response.access_tokens {
@@ -78,4 +86,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error activating service account: {:?}", e),
     }
-} 
+}

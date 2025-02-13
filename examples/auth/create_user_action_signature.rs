@@ -1,13 +1,14 @@
+use async_trait::async_trait;
 use dfns_sdk_rs::{
-    DfnsApiClient, DfnsError, DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
+    DfnsApiClient, DfnsBaseApiOptions, DfnsError,
     api::auth::types::{
-        CreateUserActionSignatureRequest, CreateUserActionSignatureRequestBody,
-        PurpleFirstFactor as FirstFactor, FluffySecondFactor as SecondFactor,
-        FirstFactorKind, SecondFactorKind
+        CreateUserActionSignatureRequest, CreateUserActionSignatureRequestBody, FirstFactorKind,
+        FluffySecondFactor as SecondFactor, PurpleFirstFactor as FirstFactor, SecondFactorKind,
+    },
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
     },
 };
-use async_trait::async_trait;
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -23,7 +24,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -71,4 +75,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error creating user action signature: {:?}", e),
     }
-} 
+}

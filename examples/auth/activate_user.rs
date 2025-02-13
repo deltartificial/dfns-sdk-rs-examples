@@ -1,9 +1,11 @@
-use dfns_sdk_rs::{
-    DfnsApiClient, DfnsError, DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::ActivateUserRequest,
-};
 use async_trait::async_trait;
+use dfns_sdk_rs::{
+    DfnsApiClient, DfnsBaseApiOptions, DfnsError,
+    api::auth::types::ActivateUserRequest,
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
+};
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -19,7 +21,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -60,7 +65,7 @@ async fn main() {
             println!("  Is Service Account: {}", response.is_service_account);
             println!("  Organization ID: {}", response.org_id);
             println!("  Credential UUID: {}", response.credential_uuid);
-            
+
             if !response.permission_assignments.is_empty() {
                 println!("\nPermission Assignments:");
                 for assignment in response.permission_assignments {
@@ -79,4 +84,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error activating user: {:?}", e),
     }
-} 
+}

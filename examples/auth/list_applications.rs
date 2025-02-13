@@ -1,8 +1,10 @@
-use dfns_sdk_rs::{
-    DfnsApiClient, DfnsError, DfnsBaseApiOptions,
-    signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-};
 use async_trait::async_trait;
+use dfns_sdk_rs::{
+    DfnsApiClient, DfnsBaseApiOptions, DfnsError,
+    signer::{
+        CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge,
+    },
+};
 use std::sync::Arc;
 
 struct ExampleSigner {
@@ -18,7 +20,10 @@ impl ExampleSigner {
 
 #[async_trait]
 impl CredentialSigner for ExampleSigner {
-    async fn sign(&self, _challenge: UserActionChallenge) -> Result<FirstFactorAssertion, DfnsError> {
+    async fn sign(
+        &self,
+        _challenge: UserActionChallenge,
+    ) -> Result<FirstFactorAssertion, DfnsError> {
         Ok(FirstFactorAssertion {
             credential_assertion: None,
             kind: FirstFactorAssertionKind::Key,
@@ -53,7 +58,7 @@ async fn main() {
                 println!("  Kind: {:?}", app.kind);
                 println!("  Is Active: {}", app.is_active);
                 println!("  Organization ID: {}", app.org_id);
-                
+
                 if !app.permission_assignments.is_empty() {
                     println!("\n  Permission Assignments:");
                     for assignment in app.permission_assignments {
@@ -69,4 +74,4 @@ async fn main() {
         }
         Err(e) => eprintln!("Error listing applications: {:?}", e),
     }
-} 
+}
