@@ -1,7 +1,7 @@
 use dfns_sdk_rs::{
     DfnsApiClient, DfnsError, DfnsBaseApiOptions,
     signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::CreatePersonalAccessTokenRequest,
+    api::auth::types::{CreatePersonalAccessTokenRequest, CreatePersonalAccessTokenRequestBody},
 };
 use async_trait::async_trait;
 use std::sync::Arc;
@@ -45,13 +45,14 @@ async fn main() {
     let client = DfnsApiClient::new(base_options, Some(signer));
 
     let request = CreatePersonalAccessTokenRequest {
-        body: serde_json::json!({
-            "name": "Example Token",
-            "permission_id": "example-permission-id",
-            "days_valid": 30,
-            "external_id": "example-external-id",
-            "public_key": "example-public-key"
-        }),
+        body: CreatePersonalAccessTokenRequestBody {
+            name: "Example Token".to_string(),
+            permission_id: Some("example-permission-id".to_string()),
+            days_valid: Some(30.0),
+            external_id: Some("example-external-id".to_string()),
+            public_key: "example-public-key".to_string(),
+            seconds_valid: None,
+        },
     };
 
     match client.auth().create_personal_access_token(request).await {
