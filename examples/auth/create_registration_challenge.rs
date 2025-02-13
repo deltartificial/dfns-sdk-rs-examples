@@ -46,20 +46,19 @@ async fn main() {
 
     let request = CreateRegistrationChallengeRequest {
         body: CreateRegistrationChallengeRequestBody {
-            email: "example.user@domain.com".to_string(),
-            external_id: Some("user123".to_string()),
-            kind: UserInfoKind::EndUser,
+            username: "example.user@domain.com".to_string(),
+            org_id: "example-org-id".to_string(),
+            registration_code: "123456".to_string(),
         },
     };
 
     match client.auth().create_registration_challenge(request).await {
         Ok(response) => {
             println!("Registration challenge created successfully:");
-            println!("  Challenge Identifier: {}", response.challenge_identifier);
             println!("  Challenge: {}", response.challenge);
-            println!("  External Auth URL: {}", response.external_authentication_url);
-            println!("  User Verification: {:?}", response.user_verification);
             println!("  Attestation: {:?}", response.attestation);
+            println!("  OTP URL: {}", response.otp_url);
+            println!("  Temporary Auth Token: {}", response.temporary_authentication_token);
             
             if let Some(rp) = response.rp {
                 println!("\nRelying Party Info:");
@@ -74,11 +73,8 @@ async fn main() {
             }
 
             println!("\nSupported Credential Kinds:");
-            for kind in response.supported_credential_kinds {
-                println!("  Kind: {:?}", kind.kind);
-                println!("  Factor: {:?}", kind.factor);
-                println!("  Requires Second Factor: {}", kind.requires_second_factor);
-            }
+            println!("  First Factor: {:?}", response.supported_credential_kinds.first_factor);
+            println!("  Second Factor: {:?}", response.supported_credential_kinds.second_factor);
 
             println!("\nUser Info:");
             println!("  ID: {}", response.user.id);
