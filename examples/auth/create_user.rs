@@ -1,7 +1,7 @@
 use dfns_sdk_rs::{
     DfnsApiClient, DfnsError, DfnsBaseApiOptions,
     signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::{CreateUserRequest, PermissionAssignment},
+    api::auth::types::{CreateUserRequest, CreateUserRequestBody, CreateUserBodyKind},
 };
 use async_trait::async_trait;
 use std::sync::Arc;
@@ -45,18 +45,12 @@ async fn main() {
     let client = DfnsApiClient::new(base_options, Some(signer));
 
     let request = CreateUserRequest {
-        username: "example.user@domain.com".to_string(),
-        name: "Example User".to_string(),
-        permission_assignments: vec![
-            PermissionAssignment {
-                permission_name: "Wallets:Read".to_string(),
-                operations: Some(vec!["List".to_string(), "Get".to_string()]),
-            },
-            PermissionAssignment {
-                permission_name: "Keys:Read".to_string(),
-                operations: Some(vec!["List".to_string()]),
-            },
-        ],
+        body: CreateUserRequestBody {
+            email: "example.user@domain.com".to_string(),
+            kind: CreateUserBodyKind::CustomerEmployee,
+            external_id: None,
+            public_key: None,
+        },
     };
 
     match client.auth().create_user(request).await {
