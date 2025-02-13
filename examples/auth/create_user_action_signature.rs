@@ -1,8 +1,11 @@
 use dfns_sdk_rs::{
     DfnsApiClient, DfnsError, DfnsBaseApiOptions,
     signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::{CreateUserActionSignatureRequest, CreateUserActionSignatureRequestBody},
-    client::base_auth_api::{FirstFactor, SecondFactor, FirstFactorKind, SecondFactorKind},
+    api::auth::types::{
+        CreateUserActionSignatureRequest, CreateUserActionSignatureRequestBody,
+        PurpleFirstFactor as FirstFactor, FluffySecondFactor as SecondFactor,
+        FirstFactorKind, SecondFactorKind
+    },
 };
 use async_trait::async_trait;
 use std::sync::Arc;
@@ -56,7 +59,7 @@ async fn main() {
             second_factor: Some(SecondFactor {
                 credential_assertion: None,
                 kind: SecondFactorKind::Totp,
-                totp: Some("123456".to_string()),
+                otp_code: Some("123456".to_string()),
             }),
         },
     };
