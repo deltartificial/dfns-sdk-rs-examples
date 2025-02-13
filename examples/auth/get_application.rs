@@ -56,7 +56,6 @@ async fn main() {
             println!("  Kind: {:?}", response.kind);
             println!("  Is Active: {}", response.is_active);
             println!("  Organization ID: {}", response.org_id);
-            println!("  Date Created: {}", response.date_created);
             
             if !response.permission_assignments.is_empty() {
                 println!("\nPermission Assignments:");
@@ -70,9 +69,6 @@ async fn main() {
                 }
             }
 
-            if let Some(permissions) = response.permissions {
-                println!("\nPermissions: {:?}", permissions);
-            }
         }
         Err(e) => eprintln!("Error retrieving application: {:?}", e),
     }

@@ -56,12 +56,8 @@ async fn main() {
             println!("  Kind: {:?}", response.kind);
             println!("  Is Active: {}", response.is_active);
             println!("  Organization ID: {}", response.org_id);
-            if let Some(linked_user_id) = &response.linked_user_id {
-                println!("  Linked User ID: {}", linked_user_id);
-            }
-            if let Some(linked_app_id) = &response.linked_app_id {
-                println!("  Linked App ID: {}", linked_app_id);
-            }
+            println!("  Linked User ID: {}", response.linked_user_id);
+            println!("  Linked App ID: {}", response.linked_app_id);
             println!("  Date Created: {}", response.date_created);
             
             if !response.permission_assignments.is_empty() {
