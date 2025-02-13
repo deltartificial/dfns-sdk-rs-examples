@@ -47,17 +47,18 @@ async fn main() {
     let request = CreateRecoveryChallengeRequest {
         body: CreateRecoveryChallengeRequestBody {
             username: "example.user@domain.com".to_string(),
+            credential_id: "example-credential-id".to_string(),
+            org_id: "example-org-id".to_string(),
+            verification_code: "123456".to_string(),
         },
     };
 
     match client.auth().create_recovery_challenge(request).await {
         Ok(response) => {
             println!("Recovery challenge created successfully:");
-            println!("  Challenge Identifier: {}", response.challenge_identifier);
             println!("  Challenge: {}", response.challenge);
-            println!("  External Auth URL: {}", response.external_authentication_url);
-            println!("  User Verification: {:?}", response.user_verification);
             println!("  Attestation: {:?}", response.attestation);
+            println!("  Temporary Auth Token: {}", response.temporary_authentication_token);
             
             if let Some(rp) = response.rp {
                 println!("\nRelying Party Info:");
@@ -68,15 +69,12 @@ async fn main() {
             println!("\nAllowed Recovery Credentials:");
             for cred in response.allowed_recovery_credentials {
                 println!("  ID: {}", cred.id);
-                println!("  Type: {:?}", cred.recovery_credential_type);
+                println!("  Encrypted Recovery Key: {}", cred.encrypted_recovery_key);
             }
 
             println!("\nSupported Credential Kinds:");
-            for kind in response.supported_credential_kinds {
-                println!("  Kind: {:?}", kind.kind);
-                println!("  Factor: {:?}", kind.factor);
-                println!("  Requires Second Factor: {}", kind.requires_second_factor);
-            }
+            println!("  First Factor: {:?}", response.supported_credential_kinds.first_factor);
+            println!("  Second Factor: {:?}", response.supported_credential_kinds.second_factor);
         }
         Err(e) => eprintln!("Error creating recovery challenge: {:?}", e),
     }
