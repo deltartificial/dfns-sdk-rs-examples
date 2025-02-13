@@ -74,22 +74,18 @@ async fn main() {
                 println!("  Requires Second Factor: {}", kind.requires_second_factor);
             }
 
-            if let Some(allow_credentials) = &response.allow_credentials {
-                println!("\nAllowed Credentials:");
-                if !allow_credentials.key.is_empty() {
-                    println!("  Keys:");
-                    for key in &allow_credentials.key {
-                        println!("    ID: {}", key.id);
-                        println!("    Type: {:?}", key.key_type);
-                    }
+            println!("\nAllowed Credentials:");
+            if !response.allow_credentials.key.is_empty() {
+                println!("  Keys:");
+                for key in &response.allow_credentials.key {
+                    println!("    ID: {}", key.id);
+                    println!("    Type: {:?}", key.key_type);
                 }
-                if let Some(webauthn) = &allow_credentials.webauthn {
-                    println!("  WebAuthn:");
-                    for cred in webauthn {
-                        println!("    ID: {}", cred.id);
-                        println!("    Type: {:?}", cred.webauthn_type);
-                    }
-                }
+            }
+            println!("  WebAuthn:");
+            for cred in &response.allow_credentials.webauthn {
+                println!("    ID: {}", cred.id);
+                println!("    Type: {:?}", cred.webauthn_type);
             }
         }
         Err(e) => eprintln!("Error creating user action challenge: {:?}", e),
