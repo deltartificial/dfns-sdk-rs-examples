@@ -1,7 +1,6 @@
 use dfns_sdk_rs::{
     DfnsApiClient, DfnsError, DfnsBaseApiOptions,
     signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::ListApplicationsRequest,
 };
 use async_trait::async_trait;
 use std::sync::Arc;
@@ -44,12 +43,7 @@ async fn main() {
 
     let client = DfnsApiClient::new(base_options, Some(signer));
 
-    let request = ListApplicationsRequest {
-        limit: Some(10),
-        paging_token: None,
-    };
-
-    match client.auth().list_applications(request).await {
+    match client.auth().list_applications().await {
         Ok(response) => {
             println!("Applications listed successfully:");
             for app in response.items {
@@ -59,7 +53,6 @@ async fn main() {
                 println!("  Kind: {:?}", app.kind);
                 println!("  Is Active: {}", app.is_active);
                 println!("  Organization ID: {}", app.org_id);
-                println!("  Date Created: {}", app.date_created);
                 
                 if !app.permission_assignments.is_empty() {
                     println!("\n  Permission Assignments:");
@@ -72,17 +65,6 @@ async fn main() {
                         }
                     }
                 }
-
-                if let Some(permissions) = app.permissions {
-                    println!("\n  Permissions: {:?}", permissions);
-                }
-            }
-
-            if let Some(paging) = response.paging {
-                println!("\nPaging:");
-                println!("  Previous Token: {:?}", paging.previous_token);
-                println!("  Next Token: {:?}", paging.next_token);
-                println!("  Total Count: {:?}", paging.total_count);
             }
         }
         Err(e) => eprintln!("Error listing applications: {:?}", e),
