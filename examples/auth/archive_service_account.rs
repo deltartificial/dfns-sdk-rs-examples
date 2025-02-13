@@ -51,20 +51,20 @@ async fn main() {
     match client.auth().archive_service_account(request).await {
         Ok(response) => {
             println!("Service Account archived successfully:");
-            println!("  Service Account ID: {}", response.service_account_id);
-            println!("  Name: {:?}", response.name);
-            println!("  Kind: {:?}", response.kind);
-            println!("  Is Active: {}", response.is_active);
-            println!("  Organization ID: {}", response.org_id);
-            
-            if let Some(access_tokens) = response.access_tokens {
-                println!("\nAccess Tokens:");
-                for token in access_tokens {
-                    println!("  Token ID: {}", token.token_id);
-                    println!("  Name: {}", token.name);
-                    println!("  Kind: {:?}", token.kind);
-                    println!("  Is Active: {}", token.is_active);
-                }
+            println!("User Info:");
+            println!("  User ID: {}", response.user_info.user_id);
+            println!("  Name: {}", response.user_info.name);
+            println!("  Kind: {:?}", response.user_info.kind);
+            println!("  Is Active: {}", response.user_info.is_active);
+            println!("  Organization ID: {}", response.user_info.org_id);
+
+            println!("\nAccess Tokens:");
+            for token in response.access_tokens {
+                println!("  Token ID: {}", token.token_id);
+                println!("  Name: {}", token.name);
+                println!("  Kind: {:?}", token.kind);
+                println!("  Is Active: {}", token.is_active);
+                println!();
             }
         }
         Err(e) => eprintln!("Error archiving service account: {:?}", e),
