@@ -1,7 +1,7 @@
 use dfns_sdk_rs::{
     DfnsApiClient, DfnsError, DfnsBaseApiOptions,
     signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::{RecoverRequest, RecoverRequestBody, RecoveryCredential, RecoveryCredentialInfo},
+    api::auth::types::{RecoverRequest, RecoverRequestBody},
 };
 use async_trait::async_trait;
 use std::sync::Arc;
@@ -46,17 +46,8 @@ async fn main() {
 
     let request = RecoverRequest {
         body: RecoverRequestBody {
-            challenge_identifier: "example-challenge-id".to_string(),
-            recovery_credential: RecoveryCredential {
-                credential_info: RecoveryCredentialInfo {
-                    attestation_data: None,
-                    client_data: None,
-                    cred_id: None,
-                    password: Some("example-password".to_string()),
-                },
-                credential_name: "Recovery Credential".to_string(),
-                encrypted_private_key: None,
-            },
+            new_credentials: vec![],
+            recovery: "example-recovery-code".to_string(),
         },
     };
 
@@ -67,16 +58,11 @@ async fn main() {
             println!("  ID: {}", response.user.id);
             println!("  Organization ID: {}", response.user.org_id);
             println!("  Username: {}", response.user.username);
-            println!("  External ID: {:?}", response.user.external_id);
-            println!("  Is Active: {}", response.user.is_active);
-            println!("  Date Created: {}", response.user.date_created);
             
             println!("\nCredential Info:");
             println!("  UUID: {}", response.credential.uuid);
             println!("  Name: {}", response.credential.name);
             println!("  Kind: {:?}", response.credential.kind);
-            println!("  Is Active: {}", response.credential.is_active);
-            println!("  Date Created: {}", response.credential.date_created);
         }
         Err(e) => eprintln!("Error during recovery: {:?}", e),
     }
