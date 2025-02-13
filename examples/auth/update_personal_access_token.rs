@@ -48,29 +48,19 @@ async fn main() {
     let request = UpdatePersonalAccessTokenRequest {
         token_id: token_id.to_string(),
         body: UpdatePersonalAccessTokenRequestBody {
-            name: "Updated Token Name".to_string(),
-            expiration: Some("2024-12-31T23:59:59Z".to_string()),
+            name: Some("Updated Token Name".to_string()),
+            external_id: None,
         },
     };
 
     match client.auth().update_personal_access_token(request).await {
         Ok(response) => {
             println!("Personal access token updated successfully:");
-            println!("  ID: {}", response.id);
             println!("  Name: {}", response.name);
-            println!("  Token: {}", response.token);
-            println!("  Expiration: {}", response.expiration);
             println!("  Is Active: {}", response.is_active);
+            println!("  Kind: {:?}", response.kind);
             println!("  Date Created: {}", response.date_created);
-            println!("  Last Used: {:?}", response.last_used);
-            println!("  Created By: {}", response.created_by);
-            
-            if let Some(permissions) = response.permissions {
-                println!("\nPermissions:");
-                for permission in permissions {
-                    println!("  - {}", permission);
-                }
-            }
+            println!("  Access Token: {:?}", response.access_token);
         }
         Err(e) => eprintln!("Error updating personal access token: {:?}", e),
     }

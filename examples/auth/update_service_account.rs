@@ -48,7 +48,7 @@ async fn main() {
     let request = UpdateServiceAccountRequest {
         service_account_id: service_account_id.to_string(),
         body: UpdateServiceAccountRequestBody {
-            name: "Updated Service Account Name".to_string(),
+            name: Some("Updated Service Account Name".to_string()),
             external_id: Some("updated-service-123".to_string()),
         },
     };
@@ -56,18 +56,16 @@ async fn main() {
     match client.auth().update_service_account(request).await {
         Ok(response) => {
             println!("Service account updated successfully:");
-            println!("  ID: {}", response.id);
-            println!("  Name: {}", response.name);
-            println!("  External ID: {:?}", response.external_id);
-            println!("  Is Active: {}", response.is_active);
-            println!("  Date Created: {}", response.date_created);
-            println!("  Created By: {}", response.created_by);
+            println!("  User Info:");
+            println!("    Name: {}", response.user_info.name);
+            println!("    Is Active: {}", response.user_info.is_active);
+            println!("    Organization ID: {}", response.user_info.org_id);
             
-            if let Some(permissions) = response.permissions {
-                println!("\nPermissions:");
-                for permission in permissions {
-                    println!("  - {}", permission);
-                }
+            println!("\nAccess Tokens:");
+            for token in response.access_tokens {
+                println!("  Token ID: {}", token.token_id);
+                println!("  Name: {}", token.name);
+                println!("  Is Active: {}", token.is_active);
             }
         }
         Err(e) => eprintln!("Error updating service account: {:?}", e),
