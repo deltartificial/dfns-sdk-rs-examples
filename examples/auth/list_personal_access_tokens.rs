@@ -1,7 +1,6 @@
 use dfns_sdk_rs::{
     DfnsApiClient, DfnsError, DfnsBaseApiOptions,
     signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::ListPersonalAccessTokensRequest,
 };
 use async_trait::async_trait;
 use std::sync::Arc;
@@ -44,12 +43,7 @@ async fn main() {
 
     let client = DfnsApiClient::new(base_options, Some(signer));
 
-    let request = ListPersonalAccessTokensRequest {
-        limit: Some(10),
-        paging_token: None,
-    };
-
-    match client.auth().list_personal_access_tokens(request).await {
+    match client.auth().list_personal_access_tokens().await {
         Ok(response) => {
             println!("Personal Access Tokens listed successfully:");
             for token in response.items {
@@ -59,12 +53,8 @@ async fn main() {
                 println!("  Kind: {:?}", token.kind);
                 println!("  Is Active: {}", token.is_active);
                 println!("  Organization ID: {}", token.org_id);
-                if let Some(linked_user_id) = &token.linked_user_id {
-                    println!("  Linked User ID: {}", linked_user_id);
-                }
-                if let Some(linked_app_id) = &token.linked_app_id {
-                    println!("  Linked App ID: {}", linked_app_id);
-                }
+                println!("  Linked User ID: {}", token.linked_user_id);
+                println!("  Linked App ID: {}", token.linked_app_id);
                 println!("  Date Created: {}", token.date_created);
                 
                 if !token.permission_assignments.is_empty() {
@@ -78,13 +68,6 @@ async fn main() {
                         }
                     }
                 }
-            }
-
-            if let Some(paging) = response.paging {
-                println!("\nPaging:");
-                println!("  Previous Token: {:?}", paging.previous_token);
-                println!("  Next Token: {:?}", paging.next_token);
-                println!("  Total Count: {:?}", paging.total_count);
             }
         }
         Err(e) => eprintln!("Error listing personal access tokens: {:?}", e),

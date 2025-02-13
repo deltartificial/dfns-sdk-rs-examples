@@ -1,7 +1,7 @@
 use dfns_sdk_rs::{
     DfnsApiClient, DfnsError, DfnsBaseApiOptions,
     signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::{LoginRequest, LoginRequestBody, FluffyFirstFactor, StickySecondFactor},
+    api::auth::types::{LoginRequest, LoginRequestBody, FluffyFirstFactor, StickySecondFactor, FirstFactorKind},
 };
 use async_trait::async_trait;
 use std::sync::Arc;
