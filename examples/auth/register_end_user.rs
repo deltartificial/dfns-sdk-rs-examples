@@ -1,7 +1,7 @@
 use dfns_sdk_rs::{
     DfnsApiClient, DfnsError, DfnsBaseApiOptions,
     signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::{RegisterEndUserRequest, RegisterEndUserRequestBody},
+    api::auth::types::{RegisterEndUserRequest, RegisterEndUserRequestBody, StickyFirstFactorCredential, StickyRecoveryCredential, StickySecondFactorCredential, FirstFactorKind, CredentialInfo3},
 };
 use async_trait::async_trait;
 use std::sync::Arc;
@@ -46,7 +46,20 @@ async fn main() {
 
     let request = RegisterEndUserRequest {
         body: RegisterEndUserRequestBody {
-            wallets: vec!["wallet-id-1".to_string(), "wallet-id-2".to_string()],
+            first_factor_credential: StickyFirstFactorCredential {
+                credential_info: CredentialInfo3 {
+                    attestation_data: None,
+                    client_data: None,
+                    cred_id: None,
+                    password: Some("example-password".to_string()),
+                },
+                credential_name: None,
+                credential_kind: FirstFactorKind::Password,
+                encrypted_private_key: None,
+            },
+            recovery_credential: None,
+            second_factor_credential: None,
+            wallets: vec![],
         },
     };
 
