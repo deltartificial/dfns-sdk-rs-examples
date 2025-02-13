@@ -52,29 +52,29 @@ async fn main() {
         Ok(response) => {
             println!("Personal Access Token archived successfully:");
             println!("  Token ID: {}", response.token_id);
-            println!("  Name: {:?}", response.name);
+            println!("  Name: {}", response.name);
             println!("  Kind: {:?}", response.kind);
             println!("  Is Active: {}", response.is_active);
             println!("  Organization ID: {}", response.org_id);
-            
-            if let Some(user_id) = &response.user_id {
-                println!("  User ID: {}", user_id);
+            println!("  Date Created: {}", response.date_created);
+            println!("  Credential ID: {}", response.cred_id);
+            println!("  Public Key: {}", response.public_key);
+            println!("  Linked App ID: {}", response.linked_app_id);
+            println!("  Linked User ID: {}", response.linked_user_id);
+
+            if let Some(access_token) = response.access_token {
+                println!("  Access Token: {}", access_token);
             }
-            
-            if let Some(app_id) = &response.app_id {
-                println!("  App ID: {}", app_id);
-            }
-            
-            println!("  Created At: {}", response.created_at);
-            
-            if let Some(access_tokens) = response.access_tokens {
-                println!("\nAccess Tokens:");
-                for token in access_tokens {
-                    println!("  Token ID: {}", token.token_id);
-                    println!("  Name: {}", token.name);
-                    println!("  Kind: {:?}", token.kind);
-                    println!("  Is Active: {}", token.is_active);
+
+            println!("\nPermission Assignments:");
+            for assignment in response.permission_assignments {
+                println!("  Assignment ID: {}", assignment.assignment_id);
+                println!("  Permission ID: {}", assignment.permission_id);
+                println!("  Permission Name: {}", assignment.permission_name);
+                if let Some(operations) = assignment.operations {
+                    println!("  Operations: {}", operations.join(", "));
                 }
+                println!();
             }
         }
         Err(e) => eprintln!("Error archiving personal access token: {:?}", e),
