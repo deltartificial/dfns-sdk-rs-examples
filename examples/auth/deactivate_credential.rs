@@ -1,7 +1,7 @@
 use dfns_sdk_rs::{
     DfnsApiClient, DfnsError, DfnsBaseApiOptions,
     signer::{CredentialSigner, FirstFactorAssertion, FirstFactorAssertionKind, UserActionChallenge},
-    api::auth::types::DeactivateCredentialRequest,
+    api::auth::types::{DeactivateCredentialRequest, DeactivateCredentialRequestBody},
 };
 use async_trait::async_trait;
 use std::sync::Arc;
@@ -45,34 +45,15 @@ async fn main() {
     let client = DfnsApiClient::new(base_options, Some(signer));
 
     let request = DeactivateCredentialRequest {
-        credential_uuid: "example-credential-uuid".to_string(),
+        body: DeactivateCredentialRequestBody {
+            credential_uuid: "example-credential-uuid".to_string(),
+        },
     };
 
     match client.auth().deactivate_credential(request).await {
         Ok(response) => {
             println!("Credential deactivated successfully:");
-            println!("  Credential UUID: {}", response.credential_uuid);
-            println!("  Name: {}", response.name);
-            println!("  Kind: {:?}", response.kind);
-            println!("  Is Active: {}", response.is_active);
-            println!("  Organization ID: {}", response.org_id);
-            println!("  User ID: {}", response.user_id);
-            println!("  Date Created: {}", response.date_created);
-            
-            if let Some(last_used) = response.last_used {
-                println!("  Last Used: {}", last_used);
-            }
-            
-            if let Some(webauthn_info) = response.webauthn_info {
-                println!("\nWebAuthn Info:");
-                println!("  Credential ID: {}", webauthn_info.credential_id);
-                println!("  Public Key: {}", webauthn_info.public_key);
-                println!("  AAGUID: {}", webauthn_info.aaguid);
-                println!("  Sign Count: {}", webauthn_info.sign_count);
-                println!("  Attestation Type: {}", webauthn_info.attestation_type);
-                println!("  Backup State: {}", webauthn_info.backup_state);
-                println!("  Backup Eligible: {}", webauthn_info.backup_eligible);
-            }
+            println!("  Message: {}", response.message);
         }
         Err(e) => eprintln!("Error deactivating credential: {:?}", e),
     }
