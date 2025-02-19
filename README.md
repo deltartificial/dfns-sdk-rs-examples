@@ -1,10 +1,12 @@
 # dfns-sdk-rs-examples
 
+![Build status](https://img.shields.io/badge/build-passing-brightgreen?style=flat) ![License](https://img.shields.io/badge/license-MIT-blue?style=flat) [![Crates.io](https://img.shields.io/badge/crates.io-FF6C2C?style=flat&logo=rust&logoColor=white)](https://crates.io/crates/dfns-sdk-rs) ![Number of Examples](https://img.shields.io/badge/examples-109-brightgreen?style=flat)
+
 This is a collection of examples demonstrating how to use the dfns-sdk-rs library.
 
+- [Dfns SDK Rust](https://github.com/deltartificial/dfns-sdk-rs)
 - [Dfns Website](https://www.dfns.co)
 - [Dfns API Docs](https://docs.dfns.co)
-- [Dfns SDK Rust](https://github.com/deltartificial/dfns-sdk-rs)
 
 ## Installation
 
